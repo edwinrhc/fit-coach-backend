@@ -33,6 +33,7 @@ async function mastersSeed(){
     role: Role.ADMIN
   });
 
+  await userRepo.save(users);
   await userRepo.save(adminUser);
 
   console.log('✅ Seed master completado con usuarios');

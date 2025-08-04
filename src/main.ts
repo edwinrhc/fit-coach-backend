@@ -27,7 +27,7 @@ async function bootstrap() {
   // Configuración de Swagger global
   const config = new DocumentBuilder()
     .setTitle("Coach IA")
-    .setDescription("API description")
+    .setDescription("Sistema integrado con IA coaching, registrando tus consumos diarios")
     .setVersion("1.0")
     .build()
 

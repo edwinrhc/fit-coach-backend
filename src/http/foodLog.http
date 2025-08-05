@@ -4,7 +4,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "carne revueltos con pan integral",
+  "name": "pollo revueltos con pan integral",
   "calories": 330,
   "notes": "Desayuno completo con café"
 }
@@ -16,4 +16,20 @@ Authorization: Bearer {{token}}
 
 ### Buscar comidas por nombre
 GET {{host}}/{{prefix}}/food-log/search?filter=carne&page=1&limit=10
+Authorization: Bearer {{token}}
+
+
+### Actualizar registro
+PATCH {{host}}/{{prefix}}/food-log/8ab472e8-4efa-41de-a958-cbec1e6a10f9
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Pollo a la plancha",
+  "calories": 450,
+  "notes": "Cena post entreno"
+}
+
+### Eliminar registro
+DELETE {{host}}/{{prefix}}/food-log/8ab472e8-4efa-41de-a958-cbec1e6a10f9
 Authorization: Bearer {{token}}

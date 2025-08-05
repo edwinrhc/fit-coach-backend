@@ -20,7 +20,10 @@ export class FoodLogService {
     private userRepo: Repository<User>
   ) {}
 
-  async create(dto: CreateFoodLogDto, userInfo: UserInfo): Promise<FoodLog>{
+  async create(
+    dto: CreateFoodLogDto,
+    userInfo: UserInfo
+  ): Promise<FoodLog>{
     try{
       const user = await this.userRepo.findOne({
         where: { id: userInfo.userId }
@@ -64,21 +67,9 @@ export class FoodLogService {
     return new PageDto<FoodLog>(items, totalItems, { page, limit});
   }
 
-
-
-  // async update(id: string, dto: UpdateFoodLogDto, userInfo: UserInfo): Promise<FoodLog>{
-  //   try{
-  //     const foodLog = await this.repo.findOne(id,userInfo);
-  //
-  //   }catch(error){
-  //     if( error instanceof NotFoundException) throw error;
-  //     throw new InternalServerErrorException('Error al actualizar el log de alimentos');
-  //   }
-  // }
-
-
-
-  async findAll(pageOptions: PageOptionsDto): Promise<PageDto<FoodLog>>{
+  async findAll(
+    pageOptions: PageOptionsDto
+  ): Promise<PageDto<FoodLog>>{
     const { page, limit, filter} = pageOptions;
 
     const qb = this.repo.createQueryBuilder('foodLog')
@@ -89,5 +80,48 @@ export class FoodLogService {
     const [items, totalItems] = await qb.getManyAndCount();
     return new PageDto<FoodLog>(items,totalItems, { page, limit});
   }
+
+
+  async update(
+    id: string,
+    dto: UpdateFoodLogDto,
+    userInfo: UserInfo,
+  ): Promise<FoodLog>{
+    const foodLog = await this.repo.findOne({
+      where: { id, createdById: userInfo.userId }
+    });
+
+    if(!foodLog){
+      throw new NotFoundException('Registro de alimentos no encontrado o no autorizado')
+    }
+
+    const user = await this.userRepo.findOneBy({ id: userInfo.userId });
+
+    if(!user){
+      throw new NotFoundException('Usuario no encontrado');
+    }
+
+    Object.assign(foodLog, dto, {
+      updatedBy: user,
+      updatedById: user.id,
+    });
+
+    return await this.repo.save(foodLog);
+
+  }
+
+  async delete(id: string, userInfo: UserInfo): Promise<void>{
+    const foodLog = await this.repo.findOne({
+      where: { id, createdById: userInfo.userId }
+    });
+
+    if(!foodLog){
+      throw new NotFoundException('Registro de comida no encontrado o no autorizado ');
+    }
+
+    await this.repo.remove(foodLog);
+
+  }
+
 
 }

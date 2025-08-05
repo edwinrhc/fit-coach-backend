@@ -13,5 +13,5 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   //TODO: Importante
   synchronize: true, // Sólo en desarrollo
   dropSchema: true,
-  autoLoadEntities: false, // Carga automáticamente las entidades registradas
+  autoLoadEntities: true, // Carga automáticamente las entidades registradas
 };

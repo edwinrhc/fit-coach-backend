@@ -4,11 +4,12 @@ import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 import {
   Column,
   CreateDateColumn,
-  Entity,
+  Entity, OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Role } from '../role.enum';
+import { FoodLog } from '../../food-log/entities/foodLog.entity';
 
 @Entity('users')
 export class User {
@@ -54,4 +55,7 @@ export class User {
 
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
+
+  // @OneToMany(() => FoodLog, foodLog => foodLog.user)
+  // foodLogs: FoodLog[];
 }

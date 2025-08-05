@@ -1,0 +1,19 @@
+### Registrar comida (requiere token JWT con rol ADMIN)
+POST {{host}}/{{prefix}}/food-log/register
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "carne revueltos con pan integral",
+  "calories": 330,
+  "notes": "Desayuno completo con café"
+}
+
+### Obtener todos los registros (paginados)
+GET {{host}}/{{prefix}}/food-log/list?page=1&limit=10
+Authorization: Bearer {{token}}
+
+
+### Buscar comidas por nombre
+GET {{host}}/{{prefix}}/food-log/search?filter=carne&page=1&limit=10
+Authorization: Bearer {{token}}

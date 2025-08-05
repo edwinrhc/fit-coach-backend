@@ -33,7 +33,8 @@ export class UsersService {
     const user = this.repo.create({
       username: dto.username,
       email: dto.email,
-      password: hash
+      password: hash,
+      role: dto.role,
     });
 
     try{

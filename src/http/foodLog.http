@@ -4,7 +4,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "pollo revueltos con pan integral",
+  "name": "pollo3 revueltos con pan integral",
   "calories": 330,
   "notes": "Desayuno completo con café"
 }
@@ -20,7 +20,7 @@ Authorization: Bearer {{token}}
 
 
 ### Actualizar registro
-PATCH {{host}}/{{prefix}}/food-log/8ab472e8-4efa-41de-a958-cbec1e6a10f9
+PATCH {{host}}/{{prefix}}/food-log/dae95df9-c7c8-4015-84c6-f49afffdb177
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -31,5 +31,5 @@ Content-Type: application/json
 }
 
 ### Eliminar registro
-DELETE {{host}}/{{prefix}}/food-log/8ab472e8-4efa-41de-a958-cbec1e6a10f9
+DELETE {{host}}/{{prefix}}/food-log/c3f30ea1-9931-4074-a021-f04461813473
 Authorization: Bearer {{token}}

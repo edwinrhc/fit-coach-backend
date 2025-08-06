@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
 import { FoodLogModule } from './modules/food-log/food-log.module';
+import { AiModule } from './modules/ai/ai.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { FoodLogModule } from './modules/food-log/food-log.module';
     AuthModule,
     UsersModule,
     FoodLogModule,
+    AiModule,
   ],
   controllers: [AppController],
   providers: [AppService],

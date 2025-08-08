@@ -1,0 +1,32 @@
+
+
+
+### Preguntar con contexto de HOY
+POST{{host}}/{{prefix}}/ai/ask
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "prompt": "¿Cómo voy con mis calorías y qué me recomiendas cenar?",
+  "includeToday": true
+}
+
+### Preguntar con rango
+POST {{host}}/{{prefix}}/ai/ask
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "prompt": "Evalúa mi semana y dame 3 mejoras concretas",
+  "from": "2025-08-01",
+  "to": "2025-08-05"
+}
+
+### Preguntar
+POST {{host}}/{{prefix}}/ai/ask
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+"prompt": "Dame 3 ideas de desayunos saludables con 300 calorías"
+}

@@ -4,7 +4,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "pollo3 revueltos con pan integral",
+  "name": "pizza",
   "calories": 330,
   "notes": "Desayuno completo con café"
 }

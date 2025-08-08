@@ -4,9 +4,10 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "pizza",
-  "calories": 330,
-  "notes": "Desayuno completo con café"
+  "name": "carne",
+  "calories": 123,
+  "protein": 50,
+  "notes": "almuerzo completo con café"
 }
 
 ### Obtener todos los registros (paginados)

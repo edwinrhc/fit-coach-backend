@@ -11,6 +11,10 @@ export class CreateFoodLogDto {
   @Min(0)
   calories: number;
 
+  @IsNumber()
+  @Min(0)
+  protein: number;
+
   @IsString()
   notes?: string;
 

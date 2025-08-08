@@ -1,32 +1,41 @@
 
-
-
-### Preguntar con contexto de HOY
-POST{{host}}/{{prefix}}/ai/ask
-Authorization: Bearer {{token}}
+###
+# 1) Pregunta sin contexto de registros
+POST {{host}}/{{prefix}}/ai/ask
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-  "prompt": "¿Cómo voy con mis calorías y qué me recomiendas cenar?",
-  "includeToday": true
+  "prompt": "Dame 3 ideas de cena baja en calorías"
 }
 
-### Preguntar con rango
-POST {{host}}/{{prefix}}/ai/ask
-Authorization: Bearer {{token}}
+###
+# 2) Pregunta con contexto: registros de hoy
+POST {{host}}/{{prefix}}/ai/ask-with-foodlog
 Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "prompt": "¿Cómo voy hoy con las calorías y qué me recomiendas ajustar?"
+}
+
+###
+# 3) Pregunta con contexto: rango de fechas
+POST {{host}}/{{prefix}}/ai/ask-with-foodlog
+Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "prompt": "Evalúa mi semana y dame 3 mejoras concretas",
   "from": "2025-08-01",
-  "to": "2025-08-05"
+  "to": "2025-08-07"
 }
 
-### Preguntar
-POST {{host}}/{{prefix}}/ai/ask
+### Almuerzo de hoy (usa ventana 11:00–16:00)
+POST {{host}}/{{prefix}}/ai/ask-lunch
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-"prompt": "Dame 3 ideas de desayunos saludables con 300 calorías"
+  "prompt": "Hoy que almorcé y lista las proteínas por comida y un total."
 }

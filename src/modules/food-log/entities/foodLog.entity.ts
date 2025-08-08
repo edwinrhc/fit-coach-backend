@@ -20,6 +20,9 @@ export class FoodLog {
   @Column({type: 'float'})
   calories:number;
 
+  @Column({ type: 'float', default: 0, nullable: false })
+  protein: number;
+
   @Column({nullable: true})
   notes?:string;
 

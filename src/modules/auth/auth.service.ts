@@ -25,7 +25,7 @@ export class AuthService {
     const user = await this.validateUser(dto.username, dto.password);
     if(!user) throw new UnauthorizedException('Credenciales incorrectas');
 
-    const payload = { sub: user.id, role: user.role };
+    const payload = { sub: user.id,email: user.email, role: user.role };
     return {
       access_token: this.jwtService.sign(payload)
     }

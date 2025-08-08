@@ -2,5 +2,7 @@
 
 export interface UserInfo{
   userId: string;
-  role: string;
+  // role: string;
+  email?: string;
+  roles?: string[];
 }

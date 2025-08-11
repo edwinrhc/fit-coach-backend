@@ -36,6 +36,7 @@ POST {{host}}/{{prefix}}/ai/ask-lunch
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
+
 {
   "prompt": "Hoy que almorcé y lista las proteínas por comida y un total."
 }

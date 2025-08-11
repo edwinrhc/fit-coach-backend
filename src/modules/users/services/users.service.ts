@@ -1,11 +1,12 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { User } from './entities/user.entity';
+import { User } from '../entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from '../dto/create-user.dto';
 import * as bcrypt from "bcryptjs";
-import { PageOptionsDto } from '../../common/page/page-options.dto';
-import { PageDto } from '../../common/page/page.dto';
+import { PageOptionsDto } from '../../../common/page/page-options.dto';
+import { PageDto } from '../../../common/page/page.dto';
+import { EmailVerificationService } from './email-verification.service';
 
 
 @Injectable()
@@ -13,7 +14,8 @@ export class UsersService {
 
   constructor(
     @InjectRepository(User)
-    private repo: Repository<User>
+    private repo: Repository<User>,
+    private readonly emailVerification: EmailVerificationService,
   ) {
   }
 
@@ -35,10 +37,14 @@ export class UsersService {
       email: dto.email,
       password: hash,
       role: dto.role,
+      emailVerified: false,
     });
 
     try{
-      return await this.repo.save(user);
+      const saved = await this.repo.save(user);
+      // Dispara verificación (no bloqueante crítico; errores se loggean en MailService)
+      await this.emailVerification.createAndSend(saved);
+      return saved;
     }catch (error: any){
       const code = error.code ?? error.errno ?? error.name;
       throw new BadRequestException(code + 'El nombre de usuario ya está en uso');
@@ -64,6 +70,11 @@ export class UsersService {
 
   }
 
+  async findByEmail(email: string): Promise<User>{
+    const user = await this.repo.findOne({ where: { email}});
+    if(!user) throw new NotFoundException(`Usuario ${email} no encontrado`);
+    return user;
+  }
 
 
 

@@ -10,9 +10,9 @@ import {
 import { User } from '../../users/entities/user.entity';
 
 
-@Entity('email_verificacion')
+@Entity('email_verifications')
 @Unique(['token'])
-export class EmailVerificacionEntity {
+export class EmailVerification  {
 
   @PrimaryGeneratedColumn('uuid')
   id: string;

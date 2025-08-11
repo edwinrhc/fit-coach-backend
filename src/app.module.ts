@@ -8,9 +8,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
 import { FoodLogModule } from './modules/food-log/food-log.module';
 import { AiModule } from './modules/ai/ai.module';
-import { EmailController } from './modules/email/email.controller';
-import { EmailService } from './modules/email/email.service';
-import { EmailModule } from './modules/email/email.module';
+import { MailController } from './modules/email/mail.controller';
+import { MailService } from './modules/email/mail.service';
+import { MailModule } from './modules/email/mail.module';
 
 @Module({
   imports: [
@@ -20,9 +20,9 @@ import { EmailModule } from './modules/email/email.module';
     UsersModule,
     FoodLogModule,
     AiModule,
-    EmailModule,
+    MailModule,
   ],
-  controllers: [AppController, EmailController],
-  providers: [AppService, EmailService],
+  controllers: [AppController, MailController],
+  providers: [AppService, MailService],
 })
 export class AppModule {}

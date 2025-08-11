@@ -8,7 +8,7 @@ import {
 } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from '../auth/roles/roles.guard';
-import { UsersService } from './users.service';
+import { UsersService } from './services/users.service';
 import { PageOptionsDto } from '../../common/page/page-options.dto';
 import { Roles } from '../auth/roles/roles.decorator';
 import { Role } from './role.enum';
